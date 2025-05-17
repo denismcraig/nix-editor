@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "config:recommended"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["nix"],
+      "matchUpdateTypes": ["minor", "patch"]
+    }
+  ],
+  "nix": {
+    "enabled": true,
+    "commitMessageTopic": "nix package {{depName}}"
+  },
+  "nixPaths": [ "flake.nix" ],
+  "labels": ["bot"],
+  "commitMessagePrefix": "chore(deps):",
+  "rangeStrategy": "bump",
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "schedule": ["at any time"]
+}

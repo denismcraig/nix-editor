@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "jnoortheen.nix-ide",
+    "mkhl.direnv",
+    "tamasfe.even-better-toml",
+    "fill-labs.dependi",
+    "github.vscode-github-actions",
+    "rust-lang.rust-analyzer",
+    "vadimcn.vscode-lldb"
+  ]
+}

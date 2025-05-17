@@ -1,0 +1,19 @@
+name: lint
+on:
+  push:
+    branches:
+      - '**'
+    paths-ignore:
+      - 'LICENSE'
+      - '.gitignore'
+  pull_request:
+  workflow_dispatch: # allows manual triggering
+jobs:
+  nix:
+    # TODO: Figure out how to replace with a nix runner and use that instead
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/flake-checker-action@v9
+      - uses: DeterminateSystems/nix-installer-action@v17
+      - run: nix flake check

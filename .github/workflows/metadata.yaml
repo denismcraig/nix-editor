@@ -1,0 +1,47 @@
+# TODO: Only invoke this workflow on release.
+name: metadata
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "LICENSE"
+      - ".gitignore"
+  workflow_dispatch: # allows manual triggering
+jobs:
+  readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: DeterminateSystems/nix-installer-action@v17
+      - run: |
+          git config user.name "Github Actions Bot"
+          git config user.email "actions@github.com"
+          git checkout -b "${GITHUB_WORKFLOW}-${GITHUB_JOB}-${GITHUB_REF_TYPE}-${GITHUB_RUN_NUMBER}"
+      - name: write README.md
+        run: |
+          nix develop .#actions --command echo \
+            "$(nix flake metadata --quiet --json)" \
+            "$(nix flake show --all-systems --quiet --json)" \
+            | jq -s add > .github/workflows/data.json
+          nix develop .#actions --command j2 \
+            --customize .github/workflows/customize.py \
+            -o README.md \
+            .github/workflows/README.md.j2 .github/workflows/data.json
+          git add README.md
+          git commit -m "chore: update README.md"
+      - name: create pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git push -u origin "${GITHUB_WORKFLOW}-${GITHUB_JOB}-${GITHUB_REF_TYPE}-${GITHUB_RUN_NUMBER}"
+          gh pr create \
+            --title "chore(meta): Update README.md" \
+            --body "Updates the README.md with the latest metadata from 'flake.nix' and git refs" \
+            --label actions \
+            --label bot

@@ -1,0 +1,65 @@
+# nix-editor
+
+![lint](https://github.com/denismcraig/nix-blueprint/actions/workflows/lint.yaml/badge.svg)
+
+## Nix Flake Info
+
+- :page_with_curl: {{description}}
+- :watch: Last updated at {{lastModified | ctime}}
+- :hash: `{{locked.narHash}}`
+
+### Inputs
+
+{% for input_name in locks.nodes.keys() %}- :arrow_right: {{input_name}}
+{% endfor %}
+
+### Outputs
+{% if checks is defined %}
+<details><summary>checks</summary>
+
+{% for check in checks.values() | first %}- :heavy_check_mark: {{check}}
+{% endfor %}
+
+#### systems
+
+{% for system in checks.keys() %}- :computer: {{system}}
+{% endfor %}
+
+</details>{% endif %}{% if devShells is defined %}
+<details><summary>devShells</summary>
+
+{% for devShell in devShells.values() | first %}- :pager: {{devShell}}
+{% endfor %}
+
+#### systems
+
+{% for system in devShells.keys() %}- :computer: {{system}}
+{% endfor %}
+
+</details>
+{% endif %}{% if formatter is defined %}
+<details><summary>formatter</summary>
+
+- :pager: {{(formatter.values() | first).name}}
+
+#### systems
+
+{% for system in formatter.keys() %}- :computer: {{system}}
+{% endfor %}
+
+</details>
+{% endif %}{% if nixosConfigurations is defined %}
+<details><summary>nixosConfigurations</summary>
+
+{% for config in nixosConfigurations.keys() %}- :pager: {{config}}
+{% endfor %}
+
+</details>
+{% endif %}{% if nixosModules is defined %}
+<details><summary>nixosModules</summary>
+
+{% for module in nixosModules.keys() %}- :pager: {{module}}
+{% endfor %}
+
+</details>
+{% endif %}
