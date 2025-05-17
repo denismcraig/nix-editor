@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  perSystem,
   pkgs,
   ...
 }: let
@@ -23,7 +24,7 @@ in {
       environment.systemPackages = with pkgs; [helix];
     })
     (lib.mkIf (cfg.enable && cfg.vscodium.enable) {
-      environment.systemPackages = with pkgs; [vscodium];
+      environment.systemPackages = [perSystem.self.default];
     })
   ];
 }

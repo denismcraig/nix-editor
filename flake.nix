@@ -2,6 +2,8 @@
   description = "Opinionated editor configuration";
   inputs = {
     systems.url = "github:nix-systems/default";
+    flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.inputs.systems.follows = "systems";
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     blueprint = {
       url = "github:numtide/blueprint";
@@ -20,6 +22,15 @@
       url = "github:nix-community/NixOS-WSL/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = inputs: inputs.blueprint {inherit inputs;};
+  outputs = inputs:
+    inputs.blueprint {
+      inherit inputs;
+      nixpkgs.overlays = [inputs.nix-vscode-extensions.overlays.default];
+    };
 }
