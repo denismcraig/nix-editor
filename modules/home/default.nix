@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  perSystem,
   pkgs,
   ...
 }: let
@@ -13,8 +14,9 @@ in {
       enable = lib.mkEnableOption "helix";
     };
 
-    vscodium = {
-      enable = lib.mkEnableOption "vscodium";
+    vscode = {
+      enable = lib.mkEnableOption "vscode";
+      package = lib.mkPackageOption pkgs "vscode" {default = perSystem.self.vscodium;};
     };
   };
 
@@ -26,8 +28,8 @@ in {
         defaultEditor = true;
       };
     })
-    (lib.mkIf (cfg.enable && cfg.vscodium.enable) {
-      home.packages = with pkgs; [vscodium];
+    (lib.mkIf (cfg.enable && cfg.vscode.enable) {
+      home.packages = [cfg.package];
     })
   ];
 }
