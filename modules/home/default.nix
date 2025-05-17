@@ -31,6 +31,11 @@ in {
     })
     (lib.mkIf (cfg.enable && cfg.vscode.enable) {
       home.packages = [cfg.vscode.package];
+      programs.vscode = {
+        enable = true;
+        package = cfg.vscode.package;
+        ${config.home.username}.userSettings = import ../../attrsets/vscode-settings.nix;
+      };
     })
   ];
 }
