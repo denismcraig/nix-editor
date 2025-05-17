@@ -5,8 +5,8 @@
 ## Nix Flake Info
 
 - :page_with_curl: Opinionated editor configuration
-- :watch: Last updated at Sat May 17 07:44:17 2025
-- :hash: `sha256-z//QOSXtZKa5Ta0aGEYTko36l6of5t0QBQn/tb7NpEc=`
+- :watch: Last updated at Sat May 17 10:09:15 2025
+- :hash: `sha256-FZ15ocH2HZu1rd4nwMZH+iU4NCDdgcB0ePdE7A3VjD4=`
 
 ### Inputs
 
@@ -29,7 +29,15 @@
 - :heavy_check_mark: devshell-actions
 - :heavy_check_mark: devshell-default
 - :heavy_check_mark: devshell-vscodium
+- :heavy_check_mark: devshell-vscodium-go
+- :heavy_check_mark: devshell-vscodium-nix
+- :heavy_check_mark: devshell-vscodium-rust
+- :heavy_check_mark: devshell-vscodium-typescript
 - :heavy_check_mark: pkgs-vscodium
+- :heavy_check_mark: pkgs-vscodium-go
+- :heavy_check_mark: pkgs-vscodium-nix
+- :heavy_check_mark: pkgs-vscodium-rust
+- :heavy_check_mark: pkgs-vscodium-typescript
 
 
 #### systems
@@ -46,6 +54,10 @@
 - :pager: actions
 - :pager: default
 - :pager: vscodium
+- :pager: vscodium-go
+- :pager: vscodium-nix
+- :pager: vscodium-rust
+- :pager: vscodium-typescript
 
 
 #### systems
