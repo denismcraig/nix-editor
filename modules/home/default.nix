@@ -34,7 +34,7 @@ in {
       programs.vscode = {
         enable = true;
         package = cfg.vscode.package;
-        ${config.home.username}.userSettings = import ../../attrsets/vscode-settings.nix;
+        profiles.${config.home.username}.userSettings = import ../../attrsets/vscode-settings.nix;
       };
     })
   ];
