@@ -25,6 +25,8 @@ in {
       programs.helix = {
         enable = true;
         defaultEditor = true;
+        settings = import ../../attrsets/helix-settings.nix;
+        themes = import ../../attrsets/helix-themes.nix;
       };
     })
     (lib.mkIf (cfg.enable && cfg.vscode.enable) {
