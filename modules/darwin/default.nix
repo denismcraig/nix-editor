@@ -24,7 +24,7 @@ in {
       environment.systemPackages = with pkgs; [helix];
     })
     (lib.mkIf (cfg.enable && cfg.vscode.enable) {
-      environment.systemPackages = [cfg.package];
+      environment.systemPackages = [cfg.vscode.package];
     })
   ];
 }

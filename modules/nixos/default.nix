@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  perSystem,
   pkgs,
   ...
 }: let
@@ -16,7 +15,7 @@ in {
 
     vscode = {
       enable = lib.mkEnableOption "vscode";
-      package = lib.mkPackageOption pkgs "vscode" {default = perSystem.self.vscodium;};
+      package = lib.mkPackageOption pkgs "vscode" {default = pkgs.vscodium;};
     };
   };
 
@@ -25,7 +24,7 @@ in {
       environment.systemPackages = with pkgs; [helix];
     })
     (lib.mkIf (cfg.enable && cfg.vscode.enable) {
-      environment.systemPackages = [cfg.package];
+      environment.systemPackages = [cfg.vscode.package];
     })
   ];
 }
