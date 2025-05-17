@@ -5,8 +5,8 @@
 ## Nix Flake Info
 
 - :page_with_curl: Opinionated editor configuration
-- :watch: Last updated at Sat May 17 07:44:17 2025
-- :hash: `sha256-z//QOSXtZKa5Ta0aGEYTko36l6of5t0QBQn/tb7NpEc=`
+- :watch: Last updated at Sat May 17 08:00:54 2025
+- :hash: `sha256-1HLlxUzg0bCLEtcg8ueXQ12Q2UCSZMSeYu43OY3sDY4=`
 
 ### Inputs
 
