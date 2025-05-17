@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  perSystem,
   pkgs,
   ...
 }: let
@@ -24,7 +23,7 @@ in {
       environment.systemPackages = with pkgs; [helix];
     })
     (lib.mkIf (cfg.enable && cfg.vscodium.enable) {
-      environment.systemPackages = [perSystem.self.default];
+      environment.systemPackages = [pkgs.vscode-with-extensions];
     })
   ];
 }
